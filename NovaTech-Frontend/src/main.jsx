@@ -7,6 +7,7 @@ import { Root } from './Root.jsx'
 import { Home } from './Home/Home.jsx'
 import { Category } from './Home/Component/HeroSection/Category/Product_Category/Category.jsx'
 import { Product } from './Product/Product.jsx'
+import { AllProducts } from './Product/AllProducts.jsx'
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/products/:model",
         element: <Product></Product>
+      },
+      {
+        path:"/all-products",
+        element:<AllProducts></AllProducts>
       }
     ]
 

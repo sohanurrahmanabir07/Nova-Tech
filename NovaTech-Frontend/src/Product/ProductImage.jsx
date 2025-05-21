@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Photo1 from "../assets/files/PA Images/NT-60APA/23.png";
 import Photo2 from "../assets/files/PA Images/NT-60APA/24.png";
+
+import image from "../assets/files/FS Images/63.png"
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

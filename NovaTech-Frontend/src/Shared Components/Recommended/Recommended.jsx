@@ -8,6 +8,7 @@ import Photo1 from "../../assets/Images/Product Images/RV1.png"
 import Photo2 from "../../assets/Images/Product Images/NT-509FS.png"
 import Photo3 from "../../assets/Images/Product Images/NT-504FS.png"
 import { RecSlider } from './RecSlider'
+import { useNavigate } from 'react-router';
 
 export const Recommended = () => {
 
@@ -21,12 +22,12 @@ export const Recommended = () => {
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />
     };
-
+    const navigate=useNavigate()
     return (
         <div className=' bg-gray-200 flex justify-center items-center my-5 '>
 
             <section className='md:max-w-[1340px] md:mx-auto space-y-5 p-5'>
-                <p className='font-bold text-xl'>Recommended <span className='text-base font-semibold hover:scale-105 cursor-pointer'>View all <span><FontAwesomeIcon icon={faArrowRight} ></FontAwesomeIcon></span></span></p>
+                <p className='font-bold text-xl'>Recommended <span onClick={()=>navigate('/all-products')} className='text-base font-semibold hover:scale-105 cursor-pointer'>View all <span><FontAwesomeIcon icon={faArrowRight} ></FontAwesomeIcon></span></span></p>
 
                 <section className='slider-container p-5 '>
                     <Slider {...settings}>
