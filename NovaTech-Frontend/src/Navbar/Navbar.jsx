@@ -1,13 +1,20 @@
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import logo from "../assets/Logo/NOVA LOGO.png";
-import { urlConverter } from '../Functions/functions';
+import { capitalizeWords, urlConverter } from '../Functions/functions';
+import { useSelector } from 'react-redux';
 
-export const Navbar = ({products,categories}) => {
+export const Navbar = ({ products, categories }) => {
     const navigate = useNavigate();
     const detailsRef = useRef(null);
+    const user = useSelector((state) => state.NovaTech.users)
+
+    const location = useLocation()
+
+    const isDashboard = location.pathname.startsWith('/dashboard')
+
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -43,6 +50,14 @@ export const Navbar = ({products,categories}) => {
                         <li><a>Item 3</a></li>
                     </ul>
                 </div>
+                {isDashboard && (
+                    <label
+                        htmlFor="dashboard-drawer"
+                        className="btn btn-primary drawer-button lg:hidden"
+                    >
+                        ☰
+                    </label>
+                )}
                 <div className='w-25 cursor-pointer' onClick={() => navigate('/')}>
                     <img src={logo} alt="Logo" />
                 </div>
@@ -58,32 +73,46 @@ export const Navbar = ({products,categories}) => {
                     }}
 
                 >
-                    <li >
+                    <li className="relative ">
                         <details ref={detailsRef}>
-                            <summary >All Products</summary>
-                            <ul className="p-4 z-10 text-base bg-white w-[650px] shadow-2xl shadow-blue-500 rounded-sm grid grid-cols-3">
+                            <summary>Categories</summary>
+                            <div
+                                className='p-4 z-10 text-base absolute   bg-white w-[650px] shadow-2xl shadow-blue-500 rounded-sm left-1/2 right-1/2 transform -translate-x-1/2 space-y-2 '
+                            >
+                                <div className='flex justify-end  '>
+                                    <div className='cursor-pointer hover:scale-105 text-blue-500' onClick={() => navigate('/all-products')}>View All Products</div>
+                                </div>
 
-                                {
-                                    categories && categories.map((item,index)=>{
 
-                                        return (
-                                            <li key={index}><Link to={`/category/${urlConverter(item?.category)}`}>{item?.category.toUpperCase()}</Link></li>
-                                        )
-                                    })
-                                }
+                                <section className=" grid grid-cols-3">
+                                    {categories &&
+                                        categories.map((item, index) => (
+                                            <div key={index} className='overflow-hidden cursor-pointer' onClick={() => navigate(`/category/${urlConverter(item?.name)}`)}>
+                                                <img src={item?.imageUrl || `https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png`} className='w-[200px] rounded-md h-[100px] ' alt="" />
+                                                <Link to={`/category/${urlConverter(item?.category)}`}>
+                                                    {capitalizeWords(item?.name)}
+                                                </Link>
+                                            </div>
+                                        ))}
 
-                            </ul>
+                                </section>
+
+                            </div>
                         </details>
                     </li>
+
                     <li><Link>About Us</Link></li>
                     <li><Link>Support</Link></li>
                     <li><Link>Contact Us</Link></li>
-                </ul>
-            </div>
+                    {
+                        user && (<li><Link to={"/dashboard"} >Dashboard</Link></li>)
+                    }
+                </ul >
+            </div >
 
-            <div className="navbar-end">
+            <div className="navbar-end" onClick={() => navigate('/all-products')} >
                 <FontAwesomeIcon icon={faMagnifyingGlass} size='lg' className='cursor-pointer' />
             </div>
-        </div>
+        </div >
     );
 };

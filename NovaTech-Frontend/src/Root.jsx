@@ -22,7 +22,10 @@ export const Root = () => {
 
 
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getCategories`)
-    .then((res)=>setCategories(res.data))
+    .then((res)=>{
+      setCategories(res.data)
+      console.log("categories",res.data)
+    })
     .catch((err)=>console.log(err))
 
 

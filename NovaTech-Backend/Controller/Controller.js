@@ -1,3 +1,4 @@
+const { Categories } = require("../Model/Categories")
 const { Products } = require("../Model/Prodcuts")
 
 const getProducts = async (req, res) => {
@@ -15,23 +16,7 @@ const getProducts = async (req, res) => {
 }
 const getCategories = async (req, res) => {
     try {
-        const data = await Products.aggregate([
-            // [optional] sort so that the one you want comes first
-            { $sort: { createdAt: -1 } },
-
-            // group by category, picking the first document in each
-            {
-                $group: {
-                    _id: '$category',
-                    doc: { $first: '$$ROOT' }
-                }
-            },
-
-            // replace the output with the actual document
-            { $replaceRoot: { newRoot: '$doc' } },
-
-            // now you have one doc per category
-        ]);
+        const data = await Categories.find({}).sort({createdAt:-1})
         if (data) {
             res.send(data)
         }
@@ -68,6 +53,66 @@ const addProduct = async (req, res) => {
 
 
 }
+
+const addCategory=async (req,res)=>{
+    try {
+
+        const {name,imageUrl}=req.body
+
+        const search=await Categories.find({name:name}).lean()
+        if(search.length>0){
+           return res.send({
+                'message':'This Category Exists'
+            })
+            
+        }
+        const addCategory=new Categories({name,imageUrl})
+
+        const result=addCategory.save()
+        if(result){
+            res.send({
+                'message':'New Categpory Added'
+            })
+        }
+        
+    } catch (error) {
+        res.status(500).send({
+             'message':'Error Making New Category'
+        })
+    }
+}
+
+const deleteCategory=async (req,res)=>{
+    try {
+
+        const {id}=req.body
+
+        const search=await Categories.find({_id:id}).lean()
+        if(search.length>0){
+          
+            const dlt=await Categories.deleteOne({_id:id})
+            if(dlt){
+               return res.send({
+                    'message':'Category Deleted Successfully'
+                })
+            }else{
+               return res.send({
+                    'message':'Couldnt Delete it'
+                })
+            }
+            
+        }
+        return res.send({
+            'message':'Category Doesnt Exist'
+        })
+        
+    } catch (error) {
+        res.status(500).send({
+             'message':'Error Deleting Category'
+        })
+    }
+}
+
 const deleteProduct = async (req, res) => {
     const id = req.body.id
 
@@ -112,5 +157,5 @@ const updateProduct = async (req, res) => {
 }
 
 module.exports = {
-    getProducts, addProduct, deleteProduct, getCategories
+    getProducts, addProduct, deleteProduct, getCategories,addCategory,deleteCategory
 }
