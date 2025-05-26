@@ -11,13 +11,15 @@ export const Root = () => {
 
   const data={
     products:products,
-    categories:categories
+    categories:categories,
+    setCategories:setCategories,
+    setProducts:setProducts
   }
 
   useEffect(()=>{
 
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getProducts`)
-    .then((res)=>setProducts(res.data))
+    .then((res)=>{setProducts(res.data); console.log(res.data)   })
     .catch((err)=>console.log(err))
 
 

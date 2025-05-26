@@ -1,4 +1,4 @@
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faComment, faHome, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
@@ -50,14 +50,7 @@ export const Navbar = ({ products, categories }) => {
                         <li><a>Item 3</a></li>
                     </ul>
                 </div>
-                {isDashboard && (
-                    <label
-                        htmlFor="dashboard-drawer"
-                        className="btn btn-primary drawer-button lg:hidden"
-                    >
-                        ☰
-                    </label>
-                )}
+
                 <div className='w-25 cursor-pointer' onClick={() => navigate('/')}>
                     <img src={logo} alt="Logo" />
                 </div>
@@ -101,17 +94,38 @@ export const Navbar = ({ products, categories }) => {
                         </details>
                     </li>
 
-                    <li><Link>About Us</Link></li>
+                    <li className='group'>
+
+
+                        <div className='group relative'><Link>About</Link></div>
+
+                        <div className='hidden absolute group-hover:block  top-full left-0  shadow-lg shadow-blue-500  bg-white w-[200px]' >
+                            <p className='hover:bg-gray-200 p-3' onClick={() => navigate('/profile')}   > <FontAwesomeIcon icon={faHome} size='sm' ></FontAwesomeIcon>  Profile</p>
+                            <p className='hover:bg-gray-200 p-3' onClick={() => navigate('/faq')}> <FontAwesomeIcon icon={faComment} size='sm'  ></FontAwesomeIcon>  FAQ</p>
+
+                        </div>
+
+
+
+                    </li>
                     <li><Link>Support</Link></li>
-                    <li><Link>Contact Us</Link></li>
+                    <li><Link to={"/contact"} >Contact Us</Link></li>
                     {
                         user && (<li><Link to={"/dashboard"} >Dashboard</Link></li>)
                     }
                 </ul >
             </div >
 
-            <div className="navbar-end" onClick={() => navigate('/all-products')} >
-                <FontAwesomeIcon icon={faMagnifyingGlass} size='lg' className='cursor-pointer' />
+            <div className="navbar-end space-x-5" >
+                <FontAwesomeIcon icon={faMagnifyingGlass} onClick={() => navigate('/all-products')} size='md' className='cursor-pointer' />
+                {isDashboard && (
+                    <label
+                        htmlFor="dashboard-drawer"
+                        className="drawer-button lg:hidden"
+                    >
+                        ☰
+                    </label>
+                )}
             </div>
         </div >
     );

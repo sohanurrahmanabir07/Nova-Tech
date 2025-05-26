@@ -1,4 +1,5 @@
 const express=require('express')
+require('dotenv').config()
 const { router } = require('./Routes/route')
 const { ConnnectDB } = require('./Database Connection/DB_Conneection')
 const app=express()
@@ -10,7 +11,7 @@ app.use(cors({
     origin:[process.env.URL]
 }))
 const port=process.env.Port || 3500
-require('dotenv').config()
+
 
 app.use('/api',router)
 

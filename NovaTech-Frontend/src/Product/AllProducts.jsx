@@ -3,9 +3,10 @@ import Cover from "../assets/files/banner/cover.jpg"
 import { ProductCard } from '../Home/Component/HeroSection/Category/Product_Category/ProductCard'
 import Amplifier from "../assets/files/PA Images/NT-40WPA/34.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFilter, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { faFilter, faMagnifyingGlass, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { useLocation, useOutletContext } from 'react-router'
 import { capitalizeWords } from '../Functions/functions'
+import { ProductUpload } from '../Dashboard/FileUpload/ProductUpload'
 export const AllProducts = () => {
     const [limit, setLimit] = useState(5)
     const { products, categories } = useOutletContext()
@@ -13,12 +14,16 @@ export const AllProducts = () => {
     const [filterProducts, setFilterProducts] = useState([])
     const [search, setSearch] = useState('')
     const [showFilter, setShowFilter] = useState(false)
-    const location=useLocation()
+    const location = useLocation()
+
     useEffect(() => {
         if (products != null) {
             setFilterProducts(products); // Load products into filterProducts when available
         }
     }, [products]);
+
+
+
 
 
     useEffect(() => {
@@ -59,7 +64,7 @@ export const AllProducts = () => {
     }
 
     return (
-        <div className={`max-w-[1440px] ${!location.pathname.startsWith('/dashboard') && 'mx-auto' } space-y-5 mb-20`}>
+        <div className={`max-w-[1440px] ${!location.pathname.startsWith('/dashboard') && 'mx-auto'} space-y-5 mb-20`}>
 
             <div className='md:h-[400px] bg-amber-200 overflow-hidden md:rounded-lg'>
                 <img src={Cover} className=' md:w-full' alt="" />
@@ -77,6 +82,24 @@ export const AllProducts = () => {
                 </div>
 
             </div>
+            <ProductUpload></ProductUpload>
+            {
+                location.pathname.startsWith('/dashboard') &&
+                (
+                    <div className='flex justify-between '>
+                        <label htmlFor="my_modal_4" className='btn text-lg font-semibold '>
+                            Add New Products <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
+                        </label>
+
+
+
+
+
+                    </div>
+
+
+                )
+            }
 
 
             <section className='flex justify-center max-sm:flex-col max-sm:space-y-3 space-x-3  '>
@@ -86,7 +109,7 @@ export const AllProducts = () => {
                         {
                             categories && categories.map((item, index) =>
                             (
-                                <div className='flex justify-between cursor-pointer'>
+                                <div key={index} className='flex justify-between cursor-pointer'>
 
                                     <label className='font-semibold text-base'>{capitalizeWords(item?.name)}</label>
                                     <input type="checkbox" value={item?.name.toLowerCase()} onChange={handleCheck} className='toggle toggle-sm' />
@@ -124,7 +147,7 @@ export const AllProducts = () => {
                                 {
                                     categories && categories.map((item, index) =>
                                     (
-                                        <div className='flex justify-between cursor-pointer'>
+                                        <div key={index} className='flex justify-between cursor-pointer'>
 
                                             <label className='font-semibold text-base'>{capitalizeWords(item?.name)}</label>
                                             <input type="checkbox" value={item?.name} onChange={handleCheck} className='toggle toggle-sm' />
@@ -144,19 +167,26 @@ export const AllProducts = () => {
 
                             filterProducts.length > 0 ?
 
-                                (<div className='grid grid-cols-1 md:grid-cols-3  md:gap-1 gap-3'>
+                                (
+                                    <section className='space-y-5'>
+                                        <div className='grid grid-cols-1 md:grid-cols-3  md:gap-4 gap-3'>
 
 
 
-                                    {filterProducts.slice(0, limit).map((item, index) => {
-                                        return (
-                                      
-                                                <ProductCard key={index} item={item} ></ProductCard>
-                                          
-                                        )
-                                    })
-                                    }
-                                </div>
+                                            {filterProducts.slice(0, limit).map((item, index) => {
+                                                return (
+
+                                                    <ProductCard key={index} item={item} ></ProductCard>
+
+                                                )
+                                            })
+                                            }
+                                        </div>
+                                        <div className='text-center'>
+                                            <button disabled={limit >= filterProducts.length} onClick={()=>setLimit((prev)=>prev+5)} className='btn btn-secondary rounded-md'> Show More...</button>
+                                        </div>
+                                    </section>
+
                                 )
                                 :
                                 (

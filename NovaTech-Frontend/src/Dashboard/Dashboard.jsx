@@ -6,7 +6,7 @@ export const Dashboard = () => {
 
     const data=useOutletContext()
   return (
-    <div className='flex max-w-[1500px] mx-auto'>
+    <div className='flex max-w-[1340px] mx-auto'>
 
         <Sidebar></Sidebar>
         <Outlet context={data} ></Outlet>

@@ -10,10 +10,10 @@ const ProductSchema=Schema({
     rating:Number,
     description:String,
     imageUrl:[String],
-    techSpec:{
+    techSpec:[{
         type: Map,
         of:String
-    }
+    }]
 },
 {
     timestamps:true

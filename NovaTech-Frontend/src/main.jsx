@@ -13,6 +13,12 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { persistor, store } from './State Management/store.js'
 import { Provider } from 'react-redux'
 import { Dashboard } from './Dashboard/Dashboard.jsx'
+import { DashboardCategories } from './Dashboard/Dashboard Categories/DashboardCategories.jsx'
+import { Profile } from './About/Profile.jsx'
+import { Faq } from './About/Faq/Faq.jsx'
+import { Contact } from './Contact/Contact.jsx'
+import AdminDashboard from './Dashboard/Home/AdminDashboard.jsx'
+
 
 
 const router = createBrowserRouter([
@@ -31,6 +37,18 @@ const router = createBrowserRouter([
 
       },
       {
+        path:"/profile",
+        element:<Profile></Profile>
+      },
+      {
+        path:"/faq",
+        element:<Faq></Faq>
+      },
+      {
+        path:"/contact",
+        element:<Contact></Contact>
+      },
+      {
         path: "/products/:model",
         element: <Product></Product>
       },
@@ -43,8 +61,16 @@ const router = createBrowserRouter([
         element: <Dashboard></Dashboard>,
         children:[
           {
+            path:"/dashboard",
+            element:<AdminDashboard></AdminDashboard>
+          },
+          {
             path:"/dashboard/products",
             element:<AllProducts></AllProducts>
+          },
+          {
+            path:'/dashboard/categories',
+            element:<DashboardCategories></DashboardCategories>
           }
         ]
       }

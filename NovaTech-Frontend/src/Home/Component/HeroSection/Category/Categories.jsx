@@ -46,11 +46,13 @@ export const Categories = ({ categories }) => {
         navigate(`/category/${urlConverter(item?.name)}`)
     }
 
-    console.log('categories', categories)
     return (
 
-        <section className='max-w-[1340px] mx-auto '>
-            <div className="slider-container  overflow-hidden rounded-lg max-sm:px-5  space-y-10 ">
+        <section className='max-w-[1340px] mx-auto px-3 space-y-5'>
+            <div className='text-center'>
+                <p className='font-bold text-3xl text-gray-700'>Categories</p>
+            </div>
+            <div className="slider-container  overflow-hidden rounded-lg  space-y-10 ">
 
                 <Slider {...settings}>
 
@@ -58,10 +60,10 @@ export const Categories = ({ categories }) => {
                         categories ?
 
                             categories && categories.map((item, index) => (
-                                <section className='px-5'>
-                                    <div key={index} onClick={() => handleClick(item)} className='group w-[300px] h-[200px]  relative overflow-hidden rounded-lg'>
-                                        <img src={item?.imageUrl? item?.imageUrl : 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'  } alt="" className='rounded-lg w-full h-full shadow-xl shadow-blue-500 max-sm:w-full object-cover  hover:scale-105 transition-all duration-150 ease-in-out delay-110 cursor-pointer ' />
-                                        <p className='font-semibold text-xl absolute bottom-2 left-2  '>{capitalizeWords(item?.name)}</p>
+                                <section className='cursor-pointer' onClick={() => handleClick(item)}>
+                                    <div key={index}  className='group  shadow-lg p-3 space-y-2 rounded-lg'>
+                                        <img src={item?.imageUrl? item?.imageUrl : 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'  } alt="" className=' w-[300px] h-[200px] rounded-lg  max-sm:w-full object-cover  hover:scale-105 transition-all duration-150 ease-in-out delay-110 cursor-pointer ' />
+                                        <p className='font-semibold text-xl bottom-2 left-2  '>{capitalizeWords(item?.name)}</p>
                                     </div>
                                 </section>
 

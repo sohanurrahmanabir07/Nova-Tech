@@ -18,7 +18,13 @@ export const Product = () => {
             setItem(p)
             if (p) {
                 const category = categories.find((item) => item?.name?.toLowerCase() == p.category.toLowerCase())
-                setCategoryItem(category)
+                if(category){
+                    setCategoryItem(category)
+                }
+                else{
+                    setCategoryItem(-1)
+                }
+                
 
             }
 

@@ -4,6 +4,7 @@ import React from 'react'
 
 export const ProductInfo = ({item}) => {
 
+    console.log('item',item.techSpec)
     return (
         <div className='space-y-3 mb-20'>
             <div className="collapse collapse-plus bg-base-100 border border-base-300">
@@ -11,9 +12,9 @@ export const ProductInfo = ({item}) => {
                 <div className="collapse-title font-semibold text-lg ">Technical Specifications</div>
                 <div className='collapse-content list-none font-semibold text-sm text-gray-700'>
                     {
-                        Object.keys(item?.techSpec).map((obj_key,index)=>{
+                       typeof(item?.techSpec)=='object' &&   item?.techSpec?.map((ele,index)=>{
                             return(
-                                <li key={index} >{obj_key}: [ {item?.techSpec[obj_key]} ] </li>
+                                <li key={index} >{Object.keys(ele)[0]}: [ {Object.values(ele)[0]} ] </li>
                             )
                         })
                     }
