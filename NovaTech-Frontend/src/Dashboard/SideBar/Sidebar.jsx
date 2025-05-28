@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from 'react-router'
 export const Sidebar = () => {
     const navigate = useNavigate()
     return (
-        <div className="drawer lg:drawer-open z-20 md:z-0 w-auto sticky">
+        <div className="drawer drawer-end lg:drawer-open z-20 md:z-0 w-auto sticky">
             <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-side">
                 <label htmlFor="dashboard-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
@@ -23,7 +23,7 @@ export const Sidebar = () => {
                             </label>
                         </div>
                     </div>
-                    <NavLink className={({ isActive }) => isActive ? "bg-blue-400 text-white px-3 py-2 font-bold rounded-md" : 'hover:bg-blue-300'}  to={"/dashboard"}><li>Home</li></NavLink>
+                    <NavLink className={({ isActive }) => isActive ? "bg-blue-400 text-white px-3 py-2 font-bold rounded-md" : 'hover:bg-blue-300'}  to={'/dashboard'}><li>Home</li></NavLink>
                     
                     <NavLink to={'/dashboard/categories'} className={({ isActive }) => isActive ? "bg-blue-400 text-white px-3 py-2 font-bold rounded-md" : 'hover:bg-blue-300'}><li>Categories</li>
                     </NavLink>

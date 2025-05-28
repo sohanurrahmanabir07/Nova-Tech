@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StaticBanner } from '../Shared Components/Banner/StaticBanner'
 import AboutBanner from '../assets/files/banner/abt_v2.png'
 import NovaBuilding from '../assets/files/banner/NOVA Building.jpg'
@@ -20,6 +20,10 @@ export const Profile = () => {
             <img src={NovaBuilding} className='rounded-md' alt="" />
         </div>
     )
+
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[] )
     return (
         <div>
 

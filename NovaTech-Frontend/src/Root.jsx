@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Navbar } from './Navbar/Navbar'
 import { Outlet } from 'react-router-dom'
 import axios from 'axios'
+import { Footer } from './Footer/Footer'
 
 export const Root = () => {
 
@@ -41,6 +42,7 @@ export const Root = () => {
 
         <Navbar products={products} categories={categories} ></Navbar>
         <Outlet context={data} ></Outlet>
+        <Footer></Footer>
 
 
 

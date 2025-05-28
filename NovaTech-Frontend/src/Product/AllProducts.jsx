@@ -64,7 +64,7 @@ export const AllProducts = () => {
     }
 
     return (
-        <div className={`max-w-[1440px] ${!location.pathname.startsWith('/dashboard') && 'mx-auto'} space-y-5 mb-20`}>
+        <div className={`max-w-[1340px] ${!location.pathname.startsWith('/dashboard') && 'mx-auto'} space-y-5 mb-20`}>
 
             <div className='md:h-[400px] bg-amber-200 overflow-hidden md:rounded-lg'>
                 <img src={Cover} className=' md:w-full' alt="" />
@@ -86,7 +86,7 @@ export const AllProducts = () => {
             {
                 location.pathname.startsWith('/dashboard') &&
                 (
-                    <div className='flex justify-between '>
+                    <div className='flex max-sm:justify-center max-sm:items-center '>
                         <label htmlFor="my_modal_4" className='btn text-lg font-semibold '>
                             Add New Products <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
                         </label>
@@ -102,7 +102,7 @@ export const AllProducts = () => {
             }
 
 
-            <section className='flex justify-center max-sm:flex-col max-sm:space-y-3 space-x-3  '>
+            <section className='flex justify-center max-sm:items-center  max-sm:flex-col  max-sm:space-y-3 md:space-x-3  '>
                 <div className='max-sm:hidden'>
                     <section className='bg-gray-200 w-[220px] space-y-3 p-4 rounded-lg shadow-lg '>
 
@@ -116,11 +116,7 @@ export const AllProducts = () => {
                                 </div>
                             ))
                         }
-                        <div className='flex justify-between items-center cursor-pointer'>
-
-                            <label className='font-semibold text-base'>PA Amplifier</label>
-                            <input type="checkbox" id="pa-amplifier" value="pa amplifier" onChange={handleCheck} className='toggle toggle-sm' />
-                        </div>
+                    
 
                     </section>
                 </div>
@@ -129,7 +125,7 @@ export const AllProducts = () => {
 
 
 
-                <section className='space-y-2  max-sm:mx-auto w-4/5'>
+                <section className='space-y-2 md:w-4/5'>
                     <div className='flex flex-row-reverse md:hidden'  >
                         <div>
                             <div onClick={() => setShowFilter(!showFilter)} className="dropdown dropdown-end">
@@ -158,10 +154,9 @@ export const AllProducts = () => {
                         )
                     }
 
-
-
                     {
                         products ?
+
 
 
 
@@ -183,7 +178,7 @@ export const AllProducts = () => {
                                             }
                                         </div>
                                         <div className='text-center'>
-                                            <button disabled={limit >= filterProducts.length} onClick={()=>setLimit((prev)=>prev+5)} className='btn btn-secondary rounded-md'> Show More...</button>
+                                            <button disabled={limit >= filterProducts.length} onClick={() => setLimit((prev) => prev + 5)} className='btn btn-secondary rounded-md'> Show More...</button>
                                         </div>
                                     </section>
 
@@ -203,11 +198,17 @@ export const AllProducts = () => {
 
 
                             :
-
-                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) =>
                             (
-                                <div key={index} className="skeleton h-[250px] w-[350px]"></div>
-                            ))
+                                <div className='flex flex-wrap space-x-3 spacey-y-3'>
+                                    {
+                                        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) =>
+                                        (
+                                            <div key={index} className="skeleton h-[250px] w-[350px]"></div>
+                                        ))
+
+                                    }
+                                </div>
+                            )
 
 
 

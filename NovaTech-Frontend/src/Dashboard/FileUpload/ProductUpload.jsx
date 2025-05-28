@@ -39,7 +39,7 @@ export const ProductUpload = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        if (!images.length || !name || !model || !description || !category) {
+        if (!images.length || !model || !description || !category) {
             Swal.fire({ icon: "error", title: "Missing required fields" });
             return;
         }
@@ -93,7 +93,7 @@ export const ProductUpload = () => {
                     <label htmlFor="my_modal_4" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
 
                     <section className='space-y-4'>
-                        <div>
+                        <div className='space-y-4'>
                             <input type="text" value={model} onChange={(e) => setModel(e.target.value)} className='border-2 border-gray-300 p-2 w-full' placeholder='Model Name' />
                             <input type="text" value={name} onChange={(e) => setName(e.target.value)} className='border-2 border-gray-300 p-2 w-full' placeholder='Product Name' />
                             <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} className='border-2 border-gray-300 p-2 w-full' placeholder='Description' />
@@ -139,7 +139,7 @@ export const ProductUpload = () => {
                         </div>
 
                         <button
-                            disabled={(!name || !model || !description || !category || !images.length || loading)}
+                            disabled={(!model || !description || !category || !images.length || loading)}
                             onClick={handleSubmit}
                             className='btn btn-secondary w-full'>
                             Upload {loading && <span className="loading loading-spinner loading-sm"></span>}
