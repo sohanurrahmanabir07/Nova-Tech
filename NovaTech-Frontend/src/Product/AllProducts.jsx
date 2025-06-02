@@ -88,7 +88,7 @@ export const AllProducts = () => {
                 (
                     <div className='flex max-sm:justify-center max-sm:items-center '>
                         <label htmlFor="my_modal_4" className='btn text-lg font-semibold '>
-                            Add New Products <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
+                            Add Products <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
                         </label>
 
 
@@ -116,7 +116,7 @@ export const AllProducts = () => {
                                 </div>
                             ))
                         }
-                    
+
 
                     </section>
                 </div>
@@ -150,7 +150,9 @@ export const AllProducts = () => {
                                         </div>
                                     ))
                                 }
+                               
                             </section>
+                             
                         )
                     }
 
@@ -163,7 +165,7 @@ export const AllProducts = () => {
                             filterProducts.length > 0 ?
 
                                 (
-                                    <section className='space-y-5'>
+                                    <section className='space-y-5 min-h-[600px]'>
                                         <div className='grid grid-cols-1 md:grid-cols-3  md:gap-4 gap-3'>
 
 
@@ -199,11 +201,11 @@ export const AllProducts = () => {
 
                             :
                             (
-                                <div className='flex flex-wrap space-x-3 spacey-y-3'>
+                                <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
                                     {
-                                        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) =>
+                                        [1, 2, 3, 4, 5, 6].map((item, index) =>
                                         (
-                                            <div key={index} className="skeleton h-[250px] w-[350px]"></div>
+                                            <div key={index} className="skeleton h-[250px] w-[250px]"></div>
                                         ))
 
                                     }

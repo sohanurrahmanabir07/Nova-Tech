@@ -1,7 +1,7 @@
 import React from 'react'
 import Banner from "../../assets/files/banner/MBG.jpg"
 import { useLocation, useNavigate } from 'react-router'
-export const StaticBanner = ({ BannerImg }) => {
+export const StaticBanner = ({ BannerImg,BannerText }) => {
   const location = useLocation()
   const navigate=useNavigate()
   return (
@@ -17,6 +17,13 @@ export const StaticBanner = ({ BannerImg }) => {
           </div>
         )
       }
+      {/* {
+        BannerText && (
+          <div className='absolute bottom-2 left-2'>
+            {BannerText}
+          </div>
+        )
+      } */}
 
 
     </div>

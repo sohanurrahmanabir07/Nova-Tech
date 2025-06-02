@@ -11,7 +11,9 @@ export const SliderContent = () => {
     var settings = {
         dots: true,
         infinite: true,
-        speed: 500,
+        speed: 2000,
+        autoplaySpeed: 3000,
+        pauseOnHover: true,
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows:false,

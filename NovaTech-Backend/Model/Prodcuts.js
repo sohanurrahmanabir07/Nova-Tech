@@ -13,7 +13,8 @@ const ProductSchema=Schema({
     techSpec:[{
         type: Map,
         of:String
-    }]
+    }],
+    pdf:String
 },
 {
     timestamps:true

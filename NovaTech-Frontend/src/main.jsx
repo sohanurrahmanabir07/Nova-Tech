@@ -18,6 +18,9 @@ import { Profile } from './About/Profile.jsx'
 import { Faq } from './About/Faq/Faq.jsx'
 import { Contact } from './Contact/Contact.jsx'
 import AdminDashboard from './Dashboard/Home/AdminDashboard.jsx'
+import { Support } from './Support/Support.jsx'
+import { Queries } from './Dashboard/Queries/Queries.jsx'
+import { DashboardBanner } from './Dashboard/Dashboar Banner/DashboardBanner.jsx'
 
 
 
@@ -49,6 +52,10 @@ const router = createBrowserRouter([
         element:<Contact></Contact>
       },
       {
+        path: "/support",
+        element: <Support></Support>
+      },
+      {
         path: "/products/:model",
         element: <Product></Product>
       },
@@ -71,6 +78,14 @@ const router = createBrowserRouter([
           {
             path:'/dashboard/categories',
             element:<DashboardCategories></DashboardCategories>
+          },
+          {
+            path:'/dashboard/queries',
+            element:<Queries></Queries>
+          },
+          {
+            path:'/dashboard/banners',
+            element:<DashboardBanner></DashboardBanner>
           }
         ]
       }

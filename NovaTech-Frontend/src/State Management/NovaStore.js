@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-  logged: null,
+  users: null,
+  logo:null
  
 };
 
@@ -17,10 +18,13 @@ const NovaStoreSlice = createSlice({
     },
     removeUser: (state, action) => {
       state.users = null
+    },
+    addLogo:(state,action)=>{
+      state.logo=action.payload
     }
    
   }
 });
 
-export const { addUser, removeUser } = NovaStoreSlice.actions;
+export const { addUser, removeUser ,addLogo} = NovaStoreSlice.actions;
 export default NovaStoreSlice.reducer;

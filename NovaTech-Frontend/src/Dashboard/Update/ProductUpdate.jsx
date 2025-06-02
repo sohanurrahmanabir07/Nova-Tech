@@ -4,10 +4,11 @@ import { useOutletContext } from 'react-router';
 import Swal from 'sweetalert2';
 import { capitalizeWords } from '../../Functions/functions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faFilePdf, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 export const ProductUpdate = ({ item }) => {
     const [images, setImages] = useState([]); // Can be strings (existing URLs) or File objects
+    const [pdf, setPdf] = useState(null)
     const [name, setName] = useState('');
     const [model, setModel] = useState('');
     const [description, setDescription] = useState('');
@@ -17,6 +18,8 @@ export const ProductUpdate = ({ item }) => {
     const [loading, setLoading] = useState(false);
     const { setCategories, categories, products, setProducts } = useOutletContext();
     const fileInputRef = useRef();
+    const pdfInputRef = useRef();
+
 
     useEffect(() => {
         if (item && item._id) {
@@ -25,6 +28,7 @@ export const ProductUpdate = ({ item }) => {
             setModel(item.model || '');
             setDescription(item.description || '');
             setCategory(item.category || '');
+            setPdf(item.pdf || null)
 
             // Convert incoming format to {key, value} pair
             const formattedSpecs = Array.isArray(item.techSpec)
@@ -54,26 +58,40 @@ export const ProductUpdate = ({ item }) => {
 
     const removeImage = (index) => setImages(prev => prev.filter((_, i) => i !== index));
 
+
+
+    const handlePdfChange = (e) => {
+        const selectedFile = e.target.files?.[0];
+        if (selectedFile && selectedFile.type === 'application/pdf') {
+            setPdf(selectedFile);
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!images.length || !name || !model || !description || !category) {
+        if (!images.length || !name || !model || !description || !category || !pdf) {
             Swal.fire({ icon: "error", title: "Missing required fields" });
             return;
         }
 
         const formData = new FormData();
 
-        // Append existing image URLs separately so backend knows what to retain
+        // Append images (new and existing URLs)
         images.forEach(img => {
             if (typeof img === 'string') {
-                formData.append('existingImages', img); // Already uploaded
+                formData.append('existingImages', img);
             } else {
-                formData.append('images', img); // New file to be uploaded
+                formData.append('images', img);
             }
         });
 
-        // Convert {key, value} -> { key: value } structure
+        // If a new PDF file is selected (not a URL string)
+        if (pdf && typeof pdf !== 'string') {
+            formData.append('pdf', pdf);
+        }
+
+        // Convert {key, value} → { key: value }
         const transformedSpecs = specs
             .filter(({ key, value }) => key && value)
             .map(({ key, value }) => ({ [key]: value }));
@@ -83,8 +101,13 @@ export const ProductUpdate = ({ item }) => {
             model,
             description,
             category,
-            techSpec: transformedSpecs
+            techSpec: transformedSpecs,
         };
+
+        // Retain old PDF URL if no new file is selected and existing one exists
+        if (pdf && typeof pdf === 'string') {
+            info.pdf = pdf;
+        }
 
         formData.append('info', JSON.stringify(info));
 
@@ -107,6 +130,7 @@ export const ProductUpdate = ({ item }) => {
         }
     };
 
+
     if (!item) {
         return (
             <div className='w-full h-full flex justify-center items-center'>
@@ -115,15 +139,29 @@ export const ProductUpdate = ({ item }) => {
         );
     }
 
+    const hanldeClose = () => {
+        setImages(item.imageUrl || []);
+        setName(item.name || '');
+        setModel(item.model || '');
+        setDescription(item.description || '');
+        setCategory(item.category || '');
+        setPdf(item.pdf || null)
+        setSpecs(item.techSpec);
+
+        document.getElementById(`ProductUpdate-${item?._id}`).checked = false
+
+    }
+
     return (
         <div>
             <input type="checkbox" id={`ProductUpdate-${item?._id}`} className="modal-toggle" />
             <div className="modal" role="dialog">
                 <div className="modal-box relative">
-                    <div className="modal-action absolute -top-6 right-4">
-                        <label htmlFor={`ProductUpdate-${item?._id}`} className='cursor-pointer'>
-                            <FontAwesomeIcon icon={faXmark} size='lg' />
-                        </label>
+                    <div className="modal-action absolute -top-6 right-4 className='cursor-pointer'" onClick={hanldeClose}>
+
+
+                        <FontAwesomeIcon icon={faXmark} size='lg' />
+
                     </div>
 
                     <section className='space-y-4'>
@@ -133,7 +171,7 @@ export const ProductUpdate = ({ item }) => {
 
                         <select value={category} onChange={(e) => setCategory(e.target.value)} className='border p-2 w-full'>
                             <option disabled value=''>Select Category</option>
-                            {categories.map((cat, i) => (
+                            {categories && categories.map((cat, i) => (
                                 <option key={i} value={cat.name}>{capitalizeWords(cat.name)}</option>
                             ))}
                         </select>
@@ -161,7 +199,40 @@ export const ProductUpdate = ({ item }) => {
                         </div>
 
                         {/* File input */}
-                        <input type="file" ref={fileInputRef} onChange={handleFileChange} className='border p-2 w-full' accept="image/*" multiple />
+                        <span>Image</span>
+                        <input type="file" ref={fileInputRef} onChange={handleFileChange} className='border p-2 w-full text-sm  font-light' accept="image/*" multiple />
+                        {/* PDF Preview */}
+                        {pdf && typeof pdf === 'string' && (
+                            <div className='relative w-30'>
+                                <div className='px-4 py-2 rounded-md text-white bg-red-400 cursor-pointer'
+                                    onClick={() => window.open(pdf, "_blank")}
+                                >
+                                    <FontAwesomeIcon icon={faFilePdf} size='sm' />
+                                    <span className="ml-2">{model || "PDF File"}</span>
+                                </div>
+                                <button type="button" className="absolute top-0 right-0 hover:text-red-500 text-white rounded-full p-1"
+                                    onClick={() => setPdf(null)}>
+                                    ✕
+                                </button>
+                            </div>
+                        )}
+
+                        {/* PDF Upload */}
+
+                        <div>
+                            <span>Pdf</span>
+                            <input
+                                type="file"
+                                ref={pdfInputRef}
+                                onChange={handlePdfChange}
+                                className='border p-2 w-full text-sm font-light'
+                                accept="application/pdf"
+                            />
+                        </div>
+
+
+
+
 
                         <button onClick={handleSubmit} className='btn btn-secondary w-full'>
                             Update {loading && <span className="loading loading-spinner loading-sm ml-2"></span>}

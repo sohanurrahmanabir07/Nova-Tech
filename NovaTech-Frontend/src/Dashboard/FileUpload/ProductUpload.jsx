@@ -6,6 +6,7 @@ import { capitalizeWords } from '../../Functions/functions';
 
 export const ProductUpload = () => {
     const [images, setImages] = useState([]);
+    const [pdfFile, setPdfFile] = useState(null); // ✅ Added for PDF
     const [name, setName] = useState('');
     const [model, setModel] = useState('');
     const [description, setDescription] = useState('');
@@ -13,8 +14,9 @@ export const ProductUpload = () => {
     const [specs, setSpecs] = useState([{ key: '', value: '' }]);
     const [loading, setLoading] = useState(false);
 
-    const { setCategories, categories,products,setProducts } = useOutletContext();
+    const { setCategories, categories, products, setProducts } = useOutletContext();
     const fileInputRef = useRef();
+    const pdfInputRef = useRef(); // ✅ PDF ref to reset later
 
     const handleFileChange = (e) => {
         const files = Array.from(e.target.files);
@@ -27,29 +29,26 @@ export const ProductUpload = () => {
         setSpecs(newSpecs);
     };
 
-    const addSpecField = () => {
-        setSpecs([...specs, { key: '', value: '' }]);
-    };
-
-    const removeSpecField = (index) => {
-        const newSpecs = specs.filter((_, i) => i !== index);
-        setSpecs(newSpecs);
-    };
+    const addSpecField = () => setSpecs([...specs, { key: '', value: '' }]);
+    const removeSpecField = (index) => setSpecs(specs.filter((_, i) => i !== index));
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         if (!images.length || !model || !description || !category) {
             Swal.fire({ icon: "error", title: "Missing required fields" });
             return;
         }
-    
+
         const formData = new FormData();
-        images.forEach((img) => formData.append('images', img));
-    
-        // 🔥 Convert specs from key-value to desired object array format
+        images.forEach((img) => formData.append('images', img)); // 🔥 Key must match multer config
+
+        if (pdfFile) {
+            formData.append('pdf', pdfFile); // ✅ Key matches multer field
+        }
+
         const transformedSpecs = specs.map(({ key, value }) => ({ [key]: value }));
-    
+
         const info = {
             name,
             model,
@@ -57,33 +56,36 @@ export const ProductUpload = () => {
             category,
             techSpec: transformedSpecs
         };
-    
+
         formData.append('info', JSON.stringify(info));
-    
+
         setLoading(true);
-    
+
         try {
             const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/addProduct`, formData);
+
             if (res.status === 200) {
                 setProducts(res.data.data);
                 Swal.fire({ icon: "success", title: "Uploaded Successfully" });
             }
-    
+
+            // Reset
             setImages([]);
+            setPdfFile(null);
             setName('');
             setModel('');
             setDescription('');
             setCategory('');
             setSpecs([{ key: '', value: '' }]);
             fileInputRef.current.value = null;
-    
+            if (pdfInputRef.current) pdfInputRef.current.value = null;
+
         } catch (err) {
             Swal.fire({ icon: "error", title: "Error uploading", text: err.message });
         } finally {
             setLoading(false);
         }
     };
-    
 
     return (
         <div>
@@ -128,14 +130,30 @@ export const ProductUpload = () => {
                                 <button type='button' className='btn btn-sm btn-primary' onClick={addSpecField}>+ Add Spec</button>
                             </div>
 
-                            <input
-                                type="file"
-                                ref={fileInputRef}
-                                onChange={handleFileChange}
-                                className='border-2 border-gray-300 p-2 w-full'
-                                accept="image/*"
-                                multiple
-                            />
+                            {/* 🔥 Image Upload Field */}
+                            <div className='flex space-x-3'>
+                                <p>Upload Images</p>
+                                <input
+                                    type="file"
+                                    ref={fileInputRef}
+                                    onChange={handleFileChange}
+                                    className='border-2 border-gray-300 p-2 w-full'
+                                    accept="image/*"
+                                    multiple
+                                />
+                            </div>
+
+                            {/* ✅ PDF Upload Field */}
+                            <div className='flex space-x-3'>
+                                <p>Upload PDF</p>
+                                <input
+                                    type="file"
+                                    ref={pdfInputRef}
+                                    onChange={(e) => setPdfFile(e.target.files[0])}
+                                    className='border-2 border-gray-300 p-2 w-full'
+                                    accept="application/pdf"
+                                />
+                            </div>
                         </div>
 
                         <button

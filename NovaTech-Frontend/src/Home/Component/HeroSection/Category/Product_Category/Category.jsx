@@ -12,6 +12,7 @@ export const Category = ({ url }) => {
   const { categoryName } = useParams()
   const [filterProducts, setFilterProducts] = useState(null)
   const category = urlReverter(categoryName)
+
   const [search, setSearch] = useState('')
   const [categoryItem, setCategoryItem] = useState(null)
   const [randomItem, setRandomItem] = useState(null)
@@ -24,7 +25,8 @@ export const Category = ({ url }) => {
     if (products && categories) {
 
       const filter_products = products.filter((item) => item?.category?.toLowerCase().includes(category?.toLowerCase()))
-      if (filterProducts) {
+
+      if (filter_products) {
         setFilterProducts(filter_products)
       } else {
         setFilterProducts([])
@@ -37,7 +39,6 @@ export const Category = ({ url }) => {
     }
 
   }, [products, categories, categoryName])
-
   const handleDelete = () => {
 
 
@@ -124,7 +125,7 @@ export const Category = ({ url }) => {
             )
           }
 
-          <div className='grid grid-cols-1 md:grid-cols-3 md:gap-10 gap-3'>
+          <div className='grid grid-cols-1 md:grid-cols-3 md:gap-10 gap-3 min-h-[500px]'>
             {/* ____here products details will be provided instead of url____ */}
 
             {

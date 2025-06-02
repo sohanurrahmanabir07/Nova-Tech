@@ -1,21 +1,22 @@
 import { faComment, faHome, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
-import logo from "../assets/Logo/NOVA LOGO.png";
+// import logo from "../assets/Logo/NOVA LOGO.png";
 import { capitalizeWords, urlConverter } from '../Functions/functions';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SideNavbar } from './SideNav/SideNavbar';
+import { removeUser } from '../State Management/NovaStore';
 
 export const Navbar = ({ products, categories }) => {
     const navigate = useNavigate();
     const detailsRef = useRef(null);
     const user = useSelector((state) => state.NovaTech.users)
-
+    const logo = useSelector((state) => state.NovaTech.logo)
+    const dispatch=useDispatch()
     const location = useLocation()
 
     const isDashboard = location.pathname.startsWith('/dashboard')
-
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -42,7 +43,19 @@ export const Navbar = ({ products, categories }) => {
 
                 <div className='w-25 cursor-pointer block ' onClick={() => navigate('/')}>
 
-                    <img src={logo} alt="Logo" />
+                    {logo ?
+                        (
+                            <img src={logo[0]} alt="Logo" />
+                        ) 
+                    :
+                    (
+                        <div className='skeleton  rounded-sm h-10'>
+
+                        </div>
+                    )
+                   
+                   }
+
                 </div>
             </div>
             <SideNavbar categories={categories} ></SideNavbar>
@@ -98,7 +111,7 @@ export const Navbar = ({ products, categories }) => {
 
 
                     </li>
-                    <li><Link>Support</Link></li>
+                    <li><Link to={"/support"}>Support</Link></li>
                     <li><Link to={"/contact"} >Contact Us</Link></li>
                     {
                         user && (<li><Link to={"/dashboard"} >Dashboard</Link></li>)
@@ -106,8 +119,11 @@ export const Navbar = ({ products, categories }) => {
                 </ul >
             </div >
 
-            <div className="navbar-end space-x-5" onClick={() => console.log('Hello')} >
-                <FontAwesomeIcon icon={faMagnifyingGlass} onClick={() => { navigate('/all-products'); console.log('clicked') }} size='md' className='cursor-pointer' />
+            <div className="navbar-end space-x-5" >
+                <FontAwesomeIcon icon={faMagnifyingGlass} onClick={() => { navigate('/all-products'); }} size='md' className='cursor-pointer' />
+                    {
+                        user && (  <button className="btn btn-soft btn-secondary" onClick={()=>dispatch(removeUser())} >Logout</button> )
+                    }
                 {isDashboard && (
                     <label
                         htmlFor="dashboard-drawer"

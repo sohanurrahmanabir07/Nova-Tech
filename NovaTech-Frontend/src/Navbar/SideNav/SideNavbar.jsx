@@ -2,7 +2,7 @@ import { faXmark, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { useNavigate, useOutletContext } from "react-router";
-import { urlConverter } from "../../Functions/functions";
+import { capitalizeWords, urlConverter } from "../../Functions/functions";
 import { useSelector } from "react-redux";
 
 export const SideNavbar = ({ categories }) => {
@@ -43,7 +43,7 @@ export const SideNavbar = ({ categories }) => {
                                 {
                                     categories && categories.map((item, index) => {
                                         return (
-                                            <p onClick={() => { navigate(`/category/${urlConverter(item?.name)}`); document.getElementById("navbar-drawer").checked = false; }} key={index} className="text-md cursor-pointer ">{item.name}</p>
+                                            <p onClick={() => { navigate(`/category/${urlConverter(item?.name)}`); document.getElementById("navbar-drawer").checked = false; }} key={index} className="text-md cursor-pointer ">{capitalizeWords(item?.name)}</p>
                                         )
                                     })
                                 }
@@ -70,7 +70,7 @@ export const SideNavbar = ({ categories }) => {
                     </li>
 
                     {/* Clickable Items */}
-                    <li className="cursor-pointer px-3 py-2 font-bold rounded-md bg-blue-400 text-white hover:bg-blue-600" >
+                    <li className="cursor-pointer px-3 py-2 font-bold rounded-md bg-blue-400 text-white hover:bg-blue-600" onClick={()=>{navigate('/support');document.getElementById("navbar-drawer").checked = false;}} >
                         Support
                     </li>
 

@@ -10,7 +10,6 @@ export const ProductCard = ({ item }) => {
   const navigate = useNavigate()
   const { products, categories, setProducts } = useOutletContext()
   const location = useLocation()
-
   const handleDelete = () => {
 
     if (item) {
@@ -66,7 +65,7 @@ export const ProductCard = ({ item }) => {
 
   return (
     <div className='p-3'>
-      <div className='bg-gray-200 group font-semibold p-5 cursor-pointer rounded-xl'>
+      <div className='bg-gray-200 group relative font-semibold p-5 cursor-pointer rounded-xl'>
         <div onClick={() => navigate(`/products/${item?.model}`)}>
           <img src={item?.imageUrl[0]} className='w-[300px] h-[200px] rounded-xl ' alt="" />
           <p className='text-xl'>{item?.model?.toUpperCase()}</p>

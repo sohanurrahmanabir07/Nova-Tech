@@ -1,26 +1,59 @@
 import React from 'react'
 import logo from "../assets/Logo/NOVA LOGO.png"
 import { useNavigate } from 'react-router'
+import { useSelector } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
+
 export const Footer = () => {
     const navigate = useNavigate()
+    const logo = useSelector((state) => state.NovaTech.logo)
     return (
-        <footer className="footer sm:footer-horizontal bg-gray-500 text-neutral-content p-10   ">
+        <footer className="footer sm:footer-horizontal bg-zinc-700 text-neutral-content px-10 py-4 flex flex-col   ">
 
-            <section className='max-w-[1340px] mx-auto flex justify-between w-full ' > 
-                <aside className='flex space-x-2 items-center font-semibold text-lg'>
-                    <div className='w-25 cursor-pointer' onClick={() => navigate('/')}>
-                        <img src={logo} alt="" />
-                    </div>
+            <section className=' flex justify-between max-sm:flex-col items-center w-full max-sm:space-y-5' >
+                <div>
+                    <aside className='flex max-sm:flex-col max-sm:items-center space-x-2 items-center font-semibold text-lg'>
+                        <div className='w-25 cursor-pointer block ' onClick={() => navigate('/')}>
 
-                    <p>
-                        Nova Tech Ltd.
-                        <br />
-                        <span className='text-sm'>Innovative Tech Solutions.</span>
+                            {logo ?
+                                (
+                                    <img src={logo[0]} alt="Logo" />
+                                )
+                                :
+                                (
+                                    <div className='skeleton  rounded-sm h-10'>
+
+                                    </div>
+                                )
+
+                            }
+
+                        </div>
+                        <p className='max-sm:text-center'>
+                            Nova Tech Ltd.
+                            <br />
+                            <span className='text-sm'>Innovative Tech Solutions.</span>
+                        </p>
+                    </aside>
+
+                </div>
+
+
+
+                <div>
+
+                    <p className='font-semibold text-lg'>© Copyright,
+                        NOVA, 2024.
                     </p>
-                </aside>
-                <nav>
+
+
+
+
+                </div>
+                <nav className='w-[150px] text-center  space-y-4'>
                     <h6 className="footer-title">Social</h6>
-                    <div className="grid grid-flow-col gap-4">
+                    <div className="flex justify-around">
                         <a>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -55,8 +88,10 @@ export const Footer = () => {
                             </svg>
                         </a>
                     </div>
+                    <p className='font-semibold text-md text-center'> <FontAwesomeIcon icon={faLocationDot} size='lg' ></FontAwesomeIcon> 128, City Road, London, EC1V 2NX, UNITED KINGDOM.</p>
                 </nav>
             </section>
+            
 
         </footer>
     )

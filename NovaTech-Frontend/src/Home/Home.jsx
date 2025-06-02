@@ -7,6 +7,8 @@ import { Categories } from './Component/HeroSection/Category/Categories'
 import { Recommended } from '../Shared Components/Recommended/Recommended'
 import { StaticBanner } from '../Shared Components/Banner/StaticBanner'
 import { useOutletContext } from 'react-router'
+import CustomSlider from '../Shared Components/Banner/Slider Banner/CustomSlider'
+import CenterMode from '../Shared Components/Banner/Slider Banner/CenterMode'
 
 
 export const Home = () => {
@@ -15,8 +17,10 @@ export const Home = () => {
     return (
         <div className='space-y-10'>
 
-            <VideoBanner></VideoBanner>
-            <Content></Content>
+            {/* <VideoBanner></VideoBanner>
+            <CustomSlider></CustomSlider> */}
+            <CenterMode></CenterMode>
+            {/* <Content></Content> */}
             <SliderContent></SliderContent>
             <Categories categories={context.categories}></Categories>
             <StaticBanner></StaticBanner>
