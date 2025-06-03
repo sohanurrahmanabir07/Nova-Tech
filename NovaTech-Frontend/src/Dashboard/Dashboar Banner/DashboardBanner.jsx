@@ -58,7 +58,7 @@ export const DashboardBanner = () => {
 
             </div>
 
-            <section className='flex flex-col items-center md:flex-wrap md:space-x-5'>
+            <section className='flex max-sm:flex-col items-center md:flex-wrap md:space-x-5'>
                 {
                     banners && banners.map((item, index) => {
                         return (
