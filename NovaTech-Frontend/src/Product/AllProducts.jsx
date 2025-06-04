@@ -8,7 +8,7 @@ import { useLocation, useOutletContext } from 'react-router'
 import { capitalizeWords } from '../Functions/functions'
 import { ProductUpload } from '../Dashboard/FileUpload/ProductUpload'
 export const AllProducts = () => {
-    const [limit, setLimit] = useState(5)
+    const [limit, setLimit] = useState(6)
     const { products, categories } = useOutletContext()
     const [categoryFilter, setCategoryFilter] = useState([])
     const [filterProducts, setFilterProducts] = useState([])
@@ -87,13 +87,9 @@ export const AllProducts = () => {
                 location.pathname.startsWith('/dashboard') &&
                 (
                     <div className='flex max-sm:justify-center max-sm:items-center '>
-                        <label htmlFor="my_modal_4" className='btn text-lg font-semibold '>
+                        <label htmlFor="my_modal_4" className='btn text-base font-semibold hover:bg-blue-600 bg-blue-700 rounded-md text-gray-200 '>
                             Add Products <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
                         </label>
-
-
-
-
 
                     </div>
 
@@ -180,7 +176,7 @@ export const AllProducts = () => {
                                             }
                                         </div>
                                         <div className='text-center'>
-                                            <button disabled={limit >= filterProducts.length} onClick={() => setLimit((prev) => prev + 5)} className='btn btn-secondary rounded-md'> Show More...</button>
+                                            <button disabled={limit >= filterProducts.length} onClick={() => setLimit((prev) => prev + 6)} className={`btn ${limit >= filterProducts.length? `text-gray-400` : `text-blue-700 hover:bg-blue-700 hover:text-white`}   rounded-md`}> Show More...</button>
                                         </div>
                                     </section>
 

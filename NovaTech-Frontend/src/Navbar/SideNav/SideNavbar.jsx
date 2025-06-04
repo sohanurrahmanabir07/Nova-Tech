@@ -15,26 +15,26 @@ export const SideNavbar = ({ categories }) => {
             <input id="navbar-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-side ">
                 <label htmlFor="navbar-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="menu bg-blue-500 w-2/3 space-y-5 text-center font-semibold text-gray-200 min-h-full md:text-lg p-4">
+                <ul className="menu bg-blue-50 w-2/3 space-y-5 text-center font-semibold text-gray-200 min-h-full md:text-lg p-4">
                     {/* Close Button for Mobile */}
                     <div className="flex flex-row-reverse md:hidden">
                         <div>
                             <label htmlFor="navbar-drawer" className="drawer-button">
-                                <FontAwesomeIcon icon={faXmark} size="lg" />
+                                <FontAwesomeIcon icon={faXmark} className="text-red-500" size="lg" />
                             </label>
                         </div>
                     </div>
 
                     {/* FAQ-Style Categories Section */}
                     <li className="cursor-pointer  z-50">
-                        <div className="flex justify-between items-center px-3 py-2 font-bold rounded-md bg-blue-400 text-white" onClick={() => setCategoriesOpen(!isCategoriesOpen)}>
+                        <div className="flex space-x-2  items-center px-3 py-2 font-bold rounded-md btn btn-soft text-blue-700" onClick={() => setCategoriesOpen(!isCategoriesOpen)}>
                             <span>Categories</span>
                             <FontAwesomeIcon icon={faChevronDown} className={`transition-transform duration-300 ${isCategoriesOpen ? "rotate-180" : ""}`} />
                         </div>
-                        <div className={`w-full flex-col bg-blue-400 mt-3  ${isCategoriesOpen ? `block` : `hidden`}  top-full`}>
+                        <div className={`w-full flex-col bg-blue-50 shadow-md text-blue-700 mt-3  ${isCategoriesOpen ? `block` : `hidden`}  top-full`}>
 
                             <div className="flex flex-row-reverse">
-                                <div className="text-xs text-white underline" onClick={() => { navigate('/all-products'); document.getElementById('navbar-drawer').checked = false; }}>
+                                <div className="text-xs  text-blue-700 underline" onClick={() => { navigate('/all-products'); document.getElementById('navbar-drawer').checked = false; }}>
                                     View All Products
                                 </div>
                             </div>
@@ -54,11 +54,11 @@ export const SideNavbar = ({ categories }) => {
 
                     {/* FAQ-Style About Section */}
                     <li className="cursor-pointer">
-                        <div className="flex justify-between items-center px-3 py-2 font-bold rounded-md bg-blue-400 text-white" onClick={() => setAboutOpen(!isAboutOpen)}>
+                        <div className="flex space-x-2  items-center px-3 py-2 font-bold rounded-md btn btn-soft text-blue-700" onClick={() => setAboutOpen(!isAboutOpen)}>
                             <span>About</span>
                             <FontAwesomeIcon icon={faChevronDown} className={`transition-transform duration-300 ${isAboutOpen ? "rotate-180" : ""}`} />
                         </div>
-                        <div className={`w-full flex-col bg-blue-400 mt-3   ${isAboutOpen ? `block` : `hidden`}  top-full`}>
+                        <div className={`w-full flex-col  bg-blue-50 shadow-md  text-blue-700 mt-3   ${isAboutOpen ? `block` : `hidden`}  top-full`}>
                             <div className="w-full  p-2 ">
                                 <div className="space-y-2">
                                     <p onClick={() => { navigate('/faq'); document.getElementById("navbar-drawer").checked = false; }}>FAQ</p>
@@ -70,11 +70,11 @@ export const SideNavbar = ({ categories }) => {
                     </li>
 
                     {/* Clickable Items */}
-                    <li className="cursor-pointer px-3 py-2 font-bold rounded-md bg-blue-400 text-white hover:bg-blue-600" onClick={()=>{navigate('/support');document.getElementById("navbar-drawer").checked = false;}} >
+                    <li className="cursor-pointer px-3 py-2 font-bold rounded-md btn btn-soft text-blue-700 hover:bg-blue-600" onClick={()=>{navigate('/support');document.getElementById("navbar-drawer").checked = false;}} >
                         Support
                     </li>
 
-                    <li onClick={() => { navigate('/contact'); document.getElementById("navbar-drawer").checked = false; }} className="cursor-pointer px-3 py-2 font-bold rounded-md bg-blue-400 text-white hover:bg-blue-600" >
+                    <li onClick={() => { navigate('/contact'); document.getElementById("navbar-drawer").checked = false; }} className="cursor-pointer px-3 py-2 font-bold rounded-md btn btn-soft text-blue-700 hover:bg-blue-600" >
                         Contact
 
 
@@ -85,7 +85,7 @@ export const SideNavbar = ({ categories }) => {
                             <li onClick={() => {
                                 navigate('/dashboard');
                                 document.getElementById("navbar-drawer").checked = false;
-                            }} className="cursor-pointer px-3 py-2 font-bold rounded-md bg-blue-400 text-white hover:bg-blue-600" >
+                            }} className="cursor-pointer px-3 py-2 font-bold rounded-md btn btn-soft text-blue-700 hover:bg-blue-600" >
                                 Dashboard
                             </li>
                         )

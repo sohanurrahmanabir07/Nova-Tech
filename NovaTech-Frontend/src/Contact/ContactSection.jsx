@@ -69,7 +69,7 @@ export const ContactSection = () => {
             ></textarea>
             <button
               type="submit"
-              className="bg-black text-white px-6 py-3 rounded hover:bg-gray-800"
+              className="btn  text-blue-700 px-6 py-3 rounded hover:bg-blue-700 hover:text-white  "
             >
               Send request
             </button>

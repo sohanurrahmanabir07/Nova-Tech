@@ -12,7 +12,7 @@ import { useOutletContext } from "react-router";
 const PrevArrow = ({ onClick }) => (
   <button
     onClick={onClick}
-    className="absolute left-4  top-25/100 md:top-1/3 z-5 -translate-y-1/2  text-gray-400 cursor-pointer hover:text-gray-600"
+    className="absolute left-4 md:text-3xl top-25/100 md:top-1/3 z-5 -translate-y-1/2  text-gray-400 cursor-pointer hover:text-gray-600"
   >
     <FontAwesomeIcon icon={faChevronLeft} size="2xl" ></FontAwesomeIcon>
   </button>
@@ -22,7 +22,7 @@ const PrevArrow = ({ onClick }) => (
 const NextArrow = ({ onClick }) => (
   <button
     onClick={onClick}
-    className="absolute right-4 top-25/100   md:top-1/3 z-5 -translate-y-1/2  text-gray-400 cursor-pointer hover:text-gray-600"
+    className="absolute right-4 md:text-3xl top-25/100   md:top-1/3 z-5 -translate-y-1/2  text-gray-400 cursor-pointer hover:text-gray-600"
   >
     <FontAwesomeIcon icon={faChevronRight} size="2xl" ></FontAwesomeIcon>
   </button>
@@ -97,8 +97,8 @@ function CenterMode() {
               (
                 [banners[0], banners[0]].map((item, index) => (
                   <div key={index} className="bg-transparent">
-                    <div className="slide-content w-[400px] h-[450px] mx-2 rounded-xl space-y-10 relative    transition duration-300">
-                      <img src={item.imageUrl[0] || 'https://res.cloudinary.com/des05ruq7/image/upload/v1748695524/vi3mxypffpliytvhk9lz.jpg'} className="w-full object-cover rounded-xl h-full" alt="" />
+                    <div className="slide-content mx-2 rounded-xl space-y-10 relative    transition duration-300">
+                      <img src={item?.imageUrl[0] || 'https://res.cloudinary.com/des05ruq7/image/upload/v1748695524/vi3mxypffpliytvhk9lz.jpg'} className="w-full object-cover rounded-xl h-full" alt="" />
                       <div>
                         <Content item={item}></Content>
                       </div>
@@ -112,7 +112,7 @@ function CenterMode() {
 
               [0, 0].map((item, index) => (
                 < div key={index} className="space-y-10 md:px-10 px-5" >
-                  <div className="skeleton min-h-[400px] w-full " ></div>
+                  <div className="skeleton md:min-h-[450px] h-[350px] w-full " ></div>
                   <div className="max-w-[550px] mx-auto space-y-3">
                     <div className="skeleton h-10 w-full"></div>
                     <div className="skeleton h-10 w-full"></div>

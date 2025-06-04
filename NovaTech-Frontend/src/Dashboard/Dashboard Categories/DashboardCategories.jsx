@@ -73,7 +73,7 @@ export const DashboardCategories = () => {
     return (
         <div className='md:mx-4 my-2 space-y-3 px-2 '>
 
-            <label htmlFor="my_modal_3" className='btn text-lg font-semibold '>
+            <label htmlFor="my_modal_3" className='btn text-base font-semibold hover:bg-blue-600 bg-blue-700 rounded-md text-gray-200  '>
                 Add New Category <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
             </label>
 

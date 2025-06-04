@@ -61,9 +61,9 @@ export const Recommended = () => {
     return (
         <section className="md:max-w-[1340px] md:mx-auto space-y-5 p-5 my-5">
             <p className="font-bold text-xl">
-                Recommended{" "}
-                <span onClick={() => navigate("/all-products")} className="text-base font-semibold hover:scale-105 cursor-pointer">
-                    View all <FontAwesomeIcon icon={faArrowRight} />
+                Recommended 
+                <span onClick={() => navigate("/all-products")} className="text-blue-700 ml-3 text-sm font-semibold hover:scale-105 cursor-pointer">
+                    View all  <FontAwesomeIcon icon={faArrowRight} />
                 </span>
             </p>
 

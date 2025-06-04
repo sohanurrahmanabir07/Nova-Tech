@@ -44,15 +44,15 @@ export const DashboardBanner = () => {
     return (
         <div className='space-y-5 w-full'>
             <div>
-                <h1 className='text-center md:text-5xl text-3xl font-bold text-gray-800'>Banners</h1>
-                <hr className='text-gray-400 ' />
+                <h1 className='text-center md:text-5xl text-3xl font-bold text-gray-800 underline'>Banners</h1>
+              
             </div>
 
             <br />
 
 
             <div className='flex max-sm:justify-center max-sm:items-center '>
-                <label htmlFor="uploadBanner" className='btn text-lg font-semibold '>
+                <label htmlFor="uploadBanner" className='btn text-base font-semibold hover:bg-blue-600 bg-blue-700 rounded-md text-gray-200 '>
                     Upload Banners <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
                 </label>
 

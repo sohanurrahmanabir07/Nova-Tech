@@ -25,17 +25,17 @@ export const Support = () => {
                 <p className='font-bold md:text-5xl text-3xl text-emerald-950'>Nova Support</p>
             </div>
             <div className='flex md:justify-around my-20 max-sm:flex-col max-sm:items-center max-sm:space-y-5'>
-                <div   className='rounded-lg w-[300px] px-10 py-5 shadow-2xl shadow-blue-500 cursor-pointer  flex  items-center flex-col bg-yellow-200' onClick={()=>handleModal('Techinal Assitance')} >
+                <div   className='rounded-lg  hover:scale-102 duration-150 transition-all ease-in-out  w-[300px] px-10 py-5 shadow-2xl shadow-blue-500 cursor-pointer  flex  items-center flex-col bg-blue-50' onClick={()=>handleModal('Techinal Assitance')} >
                     <img src={supportImage} className='w-[100px]' alt="" />
-                    <p className='text-xl font-semibold'>Technical Assistance</p>
+                    <p className='text-xl font-semibold text-blue-700'>Technical Assistance</p>
                 </div>
-                <div className='rounded-lg w-[300px] px-10 py-5 shadow-2xl shadow-blue-500 cursor-pointer flex  items-center flex-col bg-yellow-200' onClick={()=>handleModal('Repair & Maintenance')}>
+                <div className='rounded-lg hover:scale-102 duration-150 transition-all ease-in-out w-[300px] px-10 py-5 shadow-2xl shadow-blue-500 cursor-pointer flex  items-center flex-col bg-blue-50' onClick={()=>handleModal('Repair & Maintenance')}>
                     <img src={maintenaceImage} className='w-[100px]' alt="" />
-                    <p className='text-xl font-semibold'>Repair & Maintenance</p>
+                    <p className='text-xl font-semibold text-blue-700'>Repair & Maintenance</p>
                 </div>
-                <div className='rounded-lg w-[300px] px-10 py-5 shadow-2xl cursor-pointer shadow-blue-500  flex  items-center flex-col bg-yellow-200' onClick={()=>handleModal('Sales & Billing Support')}>
+                <div className='rounded-lg hover:scale-102 duration-150 transition-all ease-in-out w-[300px] px-10 py-5 shadow-2xl cursor-pointer shadow-blue-500  flex  items-center flex-col bg-blue-50' onClick={()=>handleModal('Sales & Billing Support')}>
                     <img src={salesImage} className='w-[100px]' alt="" />
-                    <p className='text-xl font-semibold'>Sales & Billing Support</p>
+                    <p className='text-xl font-semibold text-blue-700'>Sales & Billing Support</p>
                 </div>
             </div>
             

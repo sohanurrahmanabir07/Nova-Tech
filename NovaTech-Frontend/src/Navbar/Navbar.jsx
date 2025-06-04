@@ -13,13 +13,13 @@ export const Navbar = ({ products, categories }) => {
     const detailsRef = useRef(null);
     const user = useSelector((state) => state.NovaTech.users)
     const logo = useSelector((state) => state.NovaTech.logo)
-    const dispatch=useDispatch()
+    const dispatch = useDispatch()
     const location = useLocation()
 
     const isDashboard = location.pathname.startsWith('/dashboard')
 
     useEffect(() => {
-        const handleClickOutside = (event) => {
+        const handleClickOutside = (event) => { 
             if (detailsRef.current && !detailsRef.current.contains(event.target)) {
                 detailsRef.current.removeAttribute("open");
             }
@@ -32,7 +32,7 @@ export const Navbar = ({ products, categories }) => {
     }, []);
 
     return (
-        <div className="navbar bg-base-100 shadow-sm px-10 z-10 sticky top-0">
+        <div className="navbar bg-base-100 shadow-sm md:px-10 px-5 z-20 sticky top-0">
             <div className="navbar-start space-x-4">
                 <div className="dropdown">
                     <label htmlFor="navbar-drawer" className="drawer-button lg:hidden">
@@ -46,15 +46,15 @@ export const Navbar = ({ products, categories }) => {
                     {logo ?
                         (
                             <img src={logo[0]} alt="Logo" />
-                        ) 
-                    :
-                    (
-                        <div className='skeleton  rounded-sm h-10'>
+                        )
+                        :
+                        (
+                            <div className='skeleton  rounded-sm h-10'>
 
-                        </div>
-                    )
-                   
-                   }
+                            </div>
+                        )
+
+                    }
 
                 </div>
             </div>
@@ -64,7 +64,7 @@ export const Navbar = ({ products, categories }) => {
 
                     onClick={() => {
                         if (detailsRef.current) {
-                            detailsRef.current.removeAttribute("open");
+                            detailsRef.current.opne=false
                         }
                     }}
 
@@ -73,14 +73,14 @@ export const Navbar = ({ products, categories }) => {
                         <details ref={detailsRef}>
                             <summary>Categories</summary>
                             <div
-                                className='p-4 z-10 text-base absolute   bg-white w-[650px] shadow-2xl shadow-blue-500 rounded-sm left-1/2 right-1/2 transform -translate-x-1/2 space-y-2 '
+                                className='p-4 z-10 text-base absolute rounded-lg  bg-white w-[650px] shadow-2xl shadow-blue-500 left-1/2 right-1/2 transform -translate-x-1/2 space-y-2 '
                             >
                                 <div className='flex justify-end  '>
                                     <div className='cursor-pointer hover:scale-105 text-blue-500' onClick={() => navigate('/all-products')}>View All Products</div>
                                 </div>
 
 
-                                <section className=" grid grid-cols-3">
+                                <section className=" grid grid-cols-3 ">
                                     {categories &&
                                         categories.map((item, index) => (
                                             <div key={index} className='overflow-hidden cursor-pointer' onClick={() => navigate(`/category/${urlConverter(item?.name)}`)}>
@@ -111,19 +111,24 @@ export const Navbar = ({ products, categories }) => {
 
 
                     </li>
-                    <li><Link to={"/support"}>Support</Link></li>
-                    <li><Link to={"/contact"} >Contact Us</Link></li>
+                    <li className={location.pathname === "/support" ? "border-b-2 border-blue-500" : ""}>
+                        <Link to="/support">Support</Link>
+                    </li>
+                    <li className={location.pathname === "/contact" ? "border-b-2 border-blue-500" : ""}>
+                        <Link to="/contact">Contact Us</Link>
+                    </li>
+
                     {
-                        user && (<li><Link to={"/dashboard"} >Dashboard</Link></li>)
+                        user && (<li className={location.pathname === "/dashboard" ? "border-b-2 border-blue-500" : ""}><Link to={"/dashboard"} >Dashboard</Link></li>)
                     }
                 </ul >
             </div >
 
             <div className="navbar-end space-x-5" >
                 <FontAwesomeIcon icon={faMagnifyingGlass} onClick={() => { navigate('/all-products'); }} size='md' className='cursor-pointer' />
-                    {
-                        user && (  <button className="btn btn-soft btn-secondary" onClick={()=>dispatch(removeUser())} >Logout</button> )
-                    }
+                {
+                    user && (<button className="btn rounded-md hover:bg-blue-700 text-blue-700 hover:text-gray-200 " onClick={() => dispatch(removeUser())} >Logout</button>)
+                }
                 {isDashboard && (
                     <label
                         htmlFor="dashboard-drawer"

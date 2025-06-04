@@ -56,7 +56,7 @@ const AdminDashboard = () => {
     labels: categories?.map((item) => capitalizeWords(item.name)),
     datasets: [
       {
-        data: countProductsByCategory(categories, products).map(item => item.count),
+        data: countProductsByCategory(products, categories).map(item => item.count),
         backgroundColor: categories?.length ? generateColors(categories.length) : [],
       },
     ],

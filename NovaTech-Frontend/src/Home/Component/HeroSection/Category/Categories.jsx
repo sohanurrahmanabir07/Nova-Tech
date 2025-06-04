@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import { useNavigate } from "react-router";
 import { capitalizeWords, urlConverter } from "../../../../Functions/functions";
 
-const PrevArrow = ({ onClick }) => {
+export const PrevArrow = ({ onClick }) => {
   return (
     <div
       className="absolute top-1/2 md:-left-2 left-2 h-full transform -translate-y-1/2 text-gray-500 hover:text-gray-700 cursor-pointer z-5"
@@ -20,7 +20,7 @@ const PrevArrow = ({ onClick }) => {
   );
 };
 
-const NextArrow = ({ onClick }) => {
+export const NextArrow = ({ onClick }) => {
   return (
     <div
       className="absolute top-1/2 md:-right-2 h-full right-2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 cursor-pointer z-5"
