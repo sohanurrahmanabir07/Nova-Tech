@@ -7,15 +7,18 @@ const { uploadLogo, getQueries, UploadPdf } = require('../Controller/AdminContro
 
 const upload = multer({ dest: 'uploads/' })
 
+// __________Api testing Route______________
+router.get('/', (req, res) => {
+    res.send('The Server Is Working')
+})
+// _________API testing Route___________
 
 
 router.get('/getProducts', getProducts)
 router.get('/getCategories', getCategories)
 router.get('/getLogo', getLogo)
 router.get('/getBanners',getBanners)
-router.get('/hello', (req, res) => {
-    res.send('hey')
-})
+
 // _________Admin route________________
 router.post('/register', register)
 router.post('/login', login)
