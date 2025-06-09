@@ -7,10 +7,10 @@ import salesImage from "../assets/files/icon/sale.png"
 import { SupportModal } from './SupportModal'
 export const Support = () => {
 
-    const [support,setSupport]=useState(null)
-    const handleModal=(v)=>{
+    const [support, setSupport] = useState(null)
+    const handleModal = (v) => {
         setSupport(v)
-        document.getElementById('supportModal').checked=true
+        document.getElementById('supportModal').checked = true
 
     }
     return (
@@ -25,21 +25,23 @@ export const Support = () => {
                 <p className='font-bold md:text-5xl text-3xl text-emerald-950'>Nova Support</p>
             </div>
             <div className='flex md:justify-around my-20 max-sm:flex-col max-sm:items-center max-sm:space-y-5'>
-                <div   className='rounded-lg  hover:scale-102 duration-150 transition-all ease-in-out  w-[300px] px-10 py-5 shadow-2xl shadow-blue-500 cursor-pointer  flex  items-center flex-col bg-blue-50' onClick={()=>handleModal('Techinal Assitance')} >
-                    <img src={supportImage} className='w-[100px]' alt="" />
+                <div className='rounded-lg  hover:scale-102 duration-150 transition-all ease-in-out  w-[300px] px-10 py-5 shadow-2xl shadow-blue-500 cursor-pointer  flex  items-center flex-col bg-blue-50' onClick={() => handleModal('Techinal Assitance')} >
+                    <img loading="lazy" src={supportImage} className='w-[100px]' alt="" />
                     <p className='text-xl font-semibold text-blue-700'>Technical Assistance</p>
                 </div>
-                <div className='rounded-lg hover:scale-102 duration-150 transition-all ease-in-out w-[300px] px-10 py-5 shadow-2xl shadow-blue-500 cursor-pointer flex  items-center flex-col bg-blue-50' onClick={()=>handleModal('Repair & Maintenance')}>
-                    <img src={maintenaceImage} className='w-[100px]' alt="" />
+                <div className='rounded-lg hover:scale-102 duration-150 transition-all ease-in-out w-[300px] px-10 py-5 shadow-2xl shadow-blue-500 cursor-pointer flex  items-center flex-col bg-blue-50' onClick={() => handleModal('Repair & Maintenance')}>
+                    <img loading="lazy" src={maintenaceImage} className='w-[100px]' alt="" />
                     <p className='text-xl font-semibold text-blue-700'>Repair & Maintenance</p>
                 </div>
-                <div className='rounded-lg hover:scale-102 duration-150 transition-all ease-in-out w-[300px] px-10 py-5 shadow-2xl cursor-pointer shadow-blue-500  flex  items-center flex-col bg-blue-50' onClick={()=>handleModal('Sales & Billing Support')}>
-                    <img src={salesImage} className='w-[100px]' alt="" />
+                <div className='rounded-lg hover:scale-102 duration-150 transition-all ease-in-out w-[300px] px-10 py-5 shadow-2xl cursor-pointer shadow-blue-500  flex  items-center flex-col bg-blue-50' onClick={() => handleModal('Sales & Billing Support')}>
+                    <img loading="lazy" src={salesImage} className='w-[100px]' alt="" />
                     <p className='text-xl font-semibold text-blue-700'>Sales & Billing Support</p>
                 </div>
             </div>
-            
+
+
             <SupportModal supportTitle={support}></SupportModal>
+
 
         </div>
     )

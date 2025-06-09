@@ -81,8 +81,8 @@ function CenterMode() {
 
                 banners.map((item, index) => (
                   <div key={index} className="bg-transparent">
-                    <div className="slide-content mx-2 w-full rounded-xl space-y-10 relative    transition duration-300">
-                      <img src={item.imageUrl[0] || 'https://res.cloudinary.com/des05ruq7/image/upload/v1748695524/vi3mxypffpliytvhk9lz.jpg'} className=" w-full h-full  rounded-xl object-cover" alt="" />
+                    <div className="slide-content w-full rounded-xl space-y-10 relative    transition duration-300">
+                      <img loading="lazy" src={item.imageUrl[0] || 'https://res.cloudinary.com/des05ruq7/image/upload/v1748695524/vi3mxypffpliytvhk9lz.jpg'} className=" w-full h-full  rounded-xl object-cover" alt="" />
                       <div>
                         <Content item={item}></Content>
                       </div>
@@ -97,8 +97,8 @@ function CenterMode() {
               (
                 [banners[0], banners[0]].map((item, index) => (
                   <div key={index} className="bg-transparent">
-                    <div className="slide-content mx-2 rounded-xl space-y-10 relative    transition duration-300">
-                      <img src={item?.imageUrl[0] || 'https://res.cloudinary.com/des05ruq7/image/upload/v1748695524/vi3mxypffpliytvhk9lz.jpg'} className="w-full object-cover rounded-xl h-full" alt="" />
+                    <div className="slide-content rounded-xl space-y-10 relative    transition duration-300">
+                      <img loading="lazy" src={item?.imageUrl[0] || 'https://res.cloudinary.com/des05ruq7/image/upload/v1748695524/vi3mxypffpliytvhk9lz.jpg'} className="w-full object-cover rounded-xl h-full" alt="" />
                       <div>
                         <Content item={item}></Content>
                       </div>

@@ -10,7 +10,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 export const DashboardCategories = () => {
-    const {categories,setCategories} = useOutletContext();
+    const { categories, setCategories } = useOutletContext();
     const navigate = useNavigate();
 
     const handleClick = (item) => {
@@ -86,10 +86,11 @@ export const DashboardCategories = () => {
                 {
                     categories && categories.map((item, index) => {
                         return (
-                            <div className='relative group'  key={index}>
+                            <div className='relative group' key={index}>
                                 <div onClick={() => handleClick(item)} className="card cursor-pointer relative bg-base-100 md:w-90 rounded-md overflow-hidden  shadow-sm">
                                     <figure>
                                         <img
+                                            loading="lazy"
                                             src={item?.imageUrl || 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'}
                                             alt="Shoes" className='aspect-[3/2] hover:scale-105 duration-150 transition-all ease-in-out object-cover'
                                         />
@@ -110,7 +111,7 @@ export const DashboardCategories = () => {
 
 
                                     <label htmlFor={`updateCategory-${item.name}`} className='btn btn-secondary btn-dash px-2 rounded-sm '  > Update </label>
-                                    <button className='btn btn-error btn-dash px-2 rounded-sm' onClick={()=>handleDelete(item)}  >Delete?</button>
+                                    <button className='btn btn-error btn-dash px-2 rounded-sm' onClick={() => handleDelete(item)}  >Delete?</button>
                                 </div>
 
                                 <UpdateCategory item={item}></UpdateCategory>

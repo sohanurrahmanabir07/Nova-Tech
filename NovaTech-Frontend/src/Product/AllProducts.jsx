@@ -67,7 +67,7 @@ export const AllProducts = () => {
         <div className={`max-w-[1340px] ${!location.pathname.startsWith('/dashboard') && 'mx-auto'} space-y-5 mb-20`}>
 
             <div className='md:h-[400px] bg-amber-200 overflow-hidden md:rounded-lg'>
-                <img src={Cover} className=' md:w-full' alt="" />
+                <img loading="lazy" src={Cover} className=' md:w-full' alt="" />
             </div>
 
 

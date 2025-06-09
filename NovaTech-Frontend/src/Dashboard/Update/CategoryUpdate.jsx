@@ -97,7 +97,7 @@ export const UpdateCategory = ({ item }) => {
                         {/* Preview Image */}
                         {imagePreview && (
                             <div className="w-32 h-32 border rounded overflow-hidden">
-                                <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                                <img loading="lazy" src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
                             </div>
                         )}
 

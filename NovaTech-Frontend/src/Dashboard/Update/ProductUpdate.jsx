@@ -192,7 +192,7 @@ export const ProductUpdate = ({ item }) => {
                         <div className="flex flex-wrap gap-2">
                             {images.map((img, i) => (
                                 <div key={i} className="relative">
-                                    <img src={typeof img === 'string' ? img : URL.createObjectURL(img)} className="w-24 h-24 object-cover rounded-md shadow" />
+                                    <img loading="lazy" src={typeof img === 'string' ? img : URL.createObjectURL(img)} className="w-24 h-24 object-cover rounded-md shadow" />
                                     <button type="button" className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1" onClick={() => removeImage(i)}>✕</button>
                                 </div>
                             ))}

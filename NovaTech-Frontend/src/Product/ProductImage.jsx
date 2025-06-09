@@ -80,7 +80,7 @@ export const ProductImage = ({ item }) => {
           <Slider {...settings} ref={sliderRef}>
             {imageArr.map((img, index) => (
               <div key={index} className="flex justify-center items-center h-[300px]">
-                <img src={img} alt={`slide-${index}`} className="max-h-full object-contain w-full rounded-lg" />
+                <img loading="lazy" src={img} alt={`slide-${index}`} className="max-h-full object-contain w-full rounded-lg" />
               </div>
             ))}
           </Slider>
@@ -91,7 +91,7 @@ export const ProductImage = ({ item }) => {
           {imageArr.map((img, index) => (
             <div key={index} onClick={() => sliderRef.current.slickGoTo(index)}
               className="cursor-pointer border-2 border-gray-300 rounded-lg overflow-hidden hover:border-blue-500 transition-all duration-200">
-              <img src={img} alt={`thumb-${index}`} className="w-20 h-20 object-cover" />
+              <img loading="lazy" src={img} alt={`thumb-${index}`} className="w-20 h-20 object-cover" />
             </div>
           ))}
         </div>

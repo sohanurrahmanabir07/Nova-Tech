@@ -66,6 +66,7 @@ export const DashboardBanner = () => {
                                 <img
                                     src={`${item?.imageUrl[0] || `https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png`}`}
                                     alt=""
+                                    loading="lazy"
                                     className="w-full h-full rounded-lg max-sm:w-full object-cover hover:scale-105 transition-all duration-150 ease-in-out delay-110 cursor-pointer"
                                 />
                                 <div className="modal-action absolute right-2 rounded-full w-5 h-5 flex items-center justify-center bg-white -top-5" onClick={()=>handleDelete(item._id)}>

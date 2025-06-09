@@ -93,8 +93,9 @@ export const Categories = ({ categories }) => {
           {categories
             ? categories.map((item, index) => (
               <section key={index} className="cursor-pointer" onClick={() => handleClick(item)}>
-                <div className="group shadow-lg p-3 space-y-2 rounded-lg">
+                <div className="group shadow-lg md:p-3 space-y-2 rounded-lg">
                   <img
+                    loading="lazy"
                     src={item?.imageUrl ? item?.imageUrl : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png"}
                     alt=""
                     className="w-[300px] h-[200px] rounded-lg max-sm:w-full object-cover hover:scale-105 transition-all duration-150 ease-in-out delay-110 cursor-pointer"

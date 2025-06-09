@@ -18,7 +18,7 @@ export const Footer = () => {
 
                             {logo ?
                                 (
-                                    <img src={logo[0]} alt="Logo" />
+                                    <img loading="lazy" src={logo[0]} alt="Logo" />
                                 )
                                 :
                                 (

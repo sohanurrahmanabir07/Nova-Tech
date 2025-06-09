@@ -45,7 +45,7 @@ export const Navbar = ({ products, categories }) => {
 
                     {logo ?
                         (
-                            <img src={logo[0]} alt="Logo" />
+                            <img loading="lazy" src={logo[0]} alt="Logo" />
                         )
                         :
                         (
@@ -60,7 +60,7 @@ export const Navbar = ({ products, categories }) => {
             </div>
             <SideNavbar categories={categories} ></SideNavbar>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 text-lg font-semibold"
+                <ul className="menu menu-horizontal px-1 text-md font-semibold"
 
                     onClick={() => {
                         if (detailsRef.current) {
@@ -84,7 +84,7 @@ export const Navbar = ({ products, categories }) => {
                                     {categories &&
                                         categories.map((item, index) => (
                                             <div key={index} className='overflow-hidden cursor-pointer' onClick={() => navigate(`/category/${urlConverter(item?.name)}`)}>
-                                                <img src={item?.imageUrl || `https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png`} className='w-[200px] rounded-md h-[100px] ' alt="" />
+                                                <img  loading="lazy" src={item?.imageUrl || `https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png`} className='w-[200px] rounded-md h-[100px] ' alt="" />
                                                 <Link to={`/category/${urlConverter(item?.category)}`}>
                                                     {capitalizeWords(item?.name)}
                                                 </Link>

@@ -29,9 +29,9 @@ export const ContactSection = () => {
       {/* Form & Image Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         {/* Left image (placeholder, replace with yours) */}
-        <div className="w-full h-64 lg:h-auto bg-gray-300 rounded-md flex items-center justify-center">
+        <div className=" bg-gray-300 rounded-md flex items-center justify-center">
           {/* <span className="text-gray-500"><img src={image} alt="" /></span> */}
-          <img src={image} className='h-[300px] rounded-lg w-full' alt="" />
+          <img loading="lazy" src={image} className='   md:h-[300px] rounded-lg w-full' alt="" />
         </div>
 
         {/* Contact Form */}

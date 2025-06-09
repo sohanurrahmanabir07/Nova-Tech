@@ -152,7 +152,8 @@ export const ImageUpload = () => {
                     imagePath && (
 
                         <div className="w-[150px] relative">
-                            <img src={imagePath} className="rounded-lg" alt="" />
+                            <img loading="lazy" src={imagePath} className="rounded-lg" alt="" />
+
                             <div className="absolute -top-4 -right-2 cursor-pointer" onClick={() => { setImagePath(null); PhotoInputRef.current.value = null; setFile(null) }}>
                                 <FontAwesomeIcon icon={faCircleXmark} className="text-yellow-300" size="xs" ></FontAwesomeIcon>
                             </div>

@@ -6,7 +6,7 @@ export const Content = ({item}) => {
 
 
         <p className='text-2xl '>{item?.title}</p>
-        <p >{item?.description} <br /> any environment, creating an exceptional audio experience in every room.</p>
+        <p className='font-normal' >{item?.description} <br /> any environment, creating an exceptional audio experience in every room.</p>
 
     </div>
   )

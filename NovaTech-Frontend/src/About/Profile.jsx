@@ -17,7 +17,7 @@ export const Profile = () => {
 
     const Image = (
         <div>
-            <img src={NovaBuilding} className='rounded-md' alt="" />
+            <img loading="lazy" src={NovaBuilding} className='rounded-md' alt="" />
         </div>
     )
 
