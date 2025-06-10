@@ -128,8 +128,10 @@ const addProduct = async (req, res) => {
 
         // Upload PDF if present
         if (pdfFile) {
+            console.log('The PDF File', pdfFile)
             const pdfUrl = await pdfUpload(pdfFile); // You already have this function
             info.pdf = pdfUrl;
+            console.log('The PDF file that we got ', pdfUrl)
         }
 
         // Validate before saving
@@ -156,10 +158,30 @@ const addProduct = async (req, res) => {
 const pdfUpload = async (file) => {
 
     const uploadToCloudinary = await cloudinary.uploader.upload(file.path, {
-        resource_type: 'raw'
+        resource_type: 'raw',
+        public_id: `pdfs/${Date.now()}-${file.originalname}`,
+        format: 'pdf', // force .pdf format
+        use_filename: true,
+        unique_filename: false
     })
 
+
+
     if (uploadToCloudinary) {
+
+        if (!(uploadToCloudinary.format == 'pdf')) {
+            let url = uploadToCloudinary.secure_url
+            for (let index = url.length - 1; index >= 0; index--) {
+                if (url[index] == '.') {
+                    let temp = url.slice(0, index)
+                    temp += '.pdf'
+                    return temp
+                }
+
+            }
+
+        }
+
         return uploadToCloudinary.secure_url
     } else {
         return null
@@ -298,7 +320,10 @@ const updateProduct = async (req, res) => {
         // Upload PDF if provided
         if (files.pdf && files.pdf.length > 0) {
             const pdfFile = files.pdf[0];
+
+            console.log('The PDF', pdfFile)
             const uploadedPdfUrl = await pdfUpload(pdfFile);
+            console.log('The PDF Url', uploadedPdfUrl)
             if (uploadedPdfUrl) {
                 info.pdf = uploadedPdfUrl;
             }
@@ -387,22 +412,22 @@ const uploadBanner = async (req, res) => {
 
 }
 
-const deleteBanner=async(req,res)=>{
+const deleteBanner = async (req, res) => {
     try {
-        const {id}=req.body
+        const { id } = req.body
 
-        const result=await Banners.deleteOne({_id:id})
-        if(result){
-            const banners=await fetchBanner()
+        const result = await Banners.deleteOne({ _id: id })
+        if (result) {
+            const banners = await fetchBanner()
 
             res.send({
-                message:'Deleted Successfully',
-                data:banners
+                message: 'Deleted Successfully',
+                data: banners
             })
         }
     } catch (error) {
         res.status(500).send({
-            message:error.message
+            message: error.message
         })
     }
 }

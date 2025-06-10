@@ -67,7 +67,7 @@ export const ProductDetails = ({ item }) => {
 
             <p className='font-semibold text-lg'>{capitalizeWords(item?.category)}</p>
             <br />
-            <p className='text-base font-semibold'>
+            <p className='text-base font-md'>
                 {item?.description}
             </p>
         </div>
