@@ -17,14 +17,14 @@ const io = new Server(server, {
 const json = require('express-json')
 const { Supports } = require('./Model/support')
 app.use(express.json())
-// app.use(cors({
-//     origin:[process.env.URL]
-// }))
-
 app.use(cors({
-    origin: '*',
-
+    origin: [process.env.URL],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }))
+app.options('*', cors());
+
+
 const port = process.env.Port || 3500
 
 
@@ -35,7 +35,7 @@ const online = {}
 io.on('connection', (socket) => {
     console.log(`a socket user ${socket.id} connected`);
     socket.on('join', (data) => {
-        
+
         online['admin'] = socket.id
         console.log('admin online', online)
 
@@ -54,11 +54,11 @@ io.on('connection', (socket) => {
 
 
                 if (online['admin']) {
-                    console.log('Online',online.admin)
+                    console.log('Online', online.admin)
                     socket.to(online.admin).emit('queries', {
                         data: newSupport
                     })
-                }else{
+                } else {
                     console.log('Not Online')
                 }
 
