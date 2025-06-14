@@ -121,7 +121,9 @@ export const ProductUpdate = ({ item }) => {
 
             if (res.status === 200) {
                 setProducts(res.data.data);
+                document.getElementById(`ProductUpdate-${item?._id}`).checked = false
                 Swal.fire({ icon: "success", title: "Updated Successfully" });
+
             }
         } catch (err) {
             Swal.fire({ icon: "error", title: "Error updating", text: err.message });

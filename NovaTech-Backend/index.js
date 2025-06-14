@@ -17,12 +17,11 @@ const io = new Server(server, {
 const json = require('express-json')
 const { Supports } = require('./Model/support')
 app.use(express.json())
-const corsOptions = {
-    origin: ['https://novatechuk.co', 'https://www.novatechuk.co'],
+app.use(cors({
+    origin: [process.env.URL],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-};
-app.use(cors(corsOptions));
+    allowedHeaders: ['Content-Type', 'Authorization']
+}))
 
 
 const port = process.env.Port || 3500
