@@ -5,7 +5,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight, faCircleArrowLeft, faCircleArrowRight } from '@fortawesome/free-solid-svg-icons';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 // Custom Next Arrow
 const NextArrow = (props) => {
   const { onClick } = props;
@@ -58,6 +59,7 @@ export const ProductImage = ({ item }) => {
 
   useEffect(() => {
     setNav1(sliderRef.current);
+    AOS.init();
   }, []);
 
   const settings = {
@@ -72,7 +74,7 @@ export const ProductImage = ({ item }) => {
   };
 
   return (
-    <section className="px-4 py-6 bg-gray-100 rounded-lg max-w-[90vw] mx-auto overflow-hidden">
+    <section data-aos="fade-right" data-aos-duration="2000" className="px-4 py-6 bg-gray-100 rounded-lg max-w-[90vw] mx-auto overflow-hidden">
       <div className="flex flex-col md:flex-row gap-4 max-h-[500px] justify-center items-center">
 
         {/* Main Image Slider */}

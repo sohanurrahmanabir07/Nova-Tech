@@ -32,7 +32,8 @@ export const Product = () => {
     }, [products,categories])
 
 
-
+    console.log('item',item);
+    
 
     return (
 

@@ -31,7 +31,7 @@ export const Footer = () => {
 
                         </div>
                         <p className='max-sm:text-center'>
-                            Nova Tech Ltd.
+                            Nova Tech Industry Uk.
                             <br />
                             <span className='text-sm'>Innovative Tech Solutions.</span>
                         </p>

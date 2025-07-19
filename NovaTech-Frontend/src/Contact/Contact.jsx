@@ -9,7 +9,7 @@ export const Contact = () => {
 
             <StaticBanner BannerImg={ContactImg} ></StaticBanner>
 
-            <div className='max-w-[1340px] mx-auto px-5'>
+            <div className='max-w-[1340px] mx-auto px-3'>
                 <ContactSection></ContactSection>
             </div>
 

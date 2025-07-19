@@ -10,7 +10,7 @@ const { Banners } = require("../Model/Banners")
 const getProducts = async (req, res) => {
 
     try {
-        const data = await Products.find({}).lean()
+        const data = await Products.find({}).sort({createdAt:-1}).lean()
         res.send(data)
     } catch (error) {
         res.send({

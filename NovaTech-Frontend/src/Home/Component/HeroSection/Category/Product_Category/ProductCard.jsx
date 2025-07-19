@@ -65,10 +65,15 @@ export const ProductCard = ({ item }) => {
 
   return (
     <div className='md:p-3'>
-      <div className='bg-gray-200 group relative font-semibold p-5 cursor-pointer rounded-xl'>
+      <div className='bg-gray-200 group relative flex items-center justify-center font-semibold p-5 cursor-pointer rounded-xl'>
         <div onClick={() => navigate(`/products/${item?.model}`)}>
           <img loading="lazy" src={item?.imageUrl[0]} className='w-[300px] h-[200px] rounded-xl ' alt="" />
-          <p className='text-xl'>{item?.model?.toUpperCase()}</p>
+          <p className='text-xl tooltip max-sm:hidden'  data-tip={item?.model}>{item?.model?.slice(0,10).toUpperCase()} {item?.model.length>20 && (
+            <span>
+              ...
+            </span>
+          )} </p>
+          <p className='text-xl md:hidden'> {item?.model?.toUpperCase()} </p>
           <p className='text-xl'>{capitalizeWords(item?.category)}</p>
 
         </div>
